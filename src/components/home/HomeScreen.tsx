@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, StatusBar, FlatList} from 'react-native';
 import * as React from 'react';
 import VideoModel from '../../controller/VideoData';
 import VideoItem from './components/VideoItem';
@@ -12,7 +12,11 @@ export default function HomeScreen() {
           flex: 1,
           backgroundColor: '#262524',
         }}>
-        <VideoItem data={VideoModel[0]} />
+        <FlatList
+          data={VideoModel}
+          pagingEnabled
+          renderItem={({item, index}) => <VideoItem data={item} />}
+        />
       </View>
     </>
   );

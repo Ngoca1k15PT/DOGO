@@ -9,6 +9,8 @@ import {
   AddIcon,
 } from '../../../assets/images/svg';
 import Constant from '../../../controller/Constant';
+import {getMusicNoteAnimation} from '../../../controller/Utils';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 type DataVideoProps = {
   data: any;
@@ -19,6 +21,8 @@ export default function VideoItem({data}: DataVideoProps) {
     data;
 
   const discAnimatedValue = useRef(new Animated.Value(0)).current;
+  const musicNoteAnimatedValue1 = useRef(new Animated.Value(0)).current;
+  const musicNoteAnimatedValue2 = useRef(new Animated.Value(0)).current;
 
   const discAnimation = {
     transform: [
@@ -31,6 +35,18 @@ export default function VideoItem({data}: DataVideoProps) {
     ],
   };
 
+  const musicNoteAnimation1 = getMusicNoteAnimation({
+    animatedValue: musicNoteAnimatedValue1,
+    isRotatedLeft: false,
+  });
+
+  const musicNoteAnimation2 = getMusicNoteAnimation({
+    animatedValue: musicNoteAnimatedValue2,
+    isRotatedLeft: true,
+  });
+
+  const bottomTabHeight = useBottomTabBarHeight();
+
   useEffect(() => {
     Animated.loop(
       Animated.timing(discAnimatedValue, {
@@ -40,11 +56,32 @@ export default function VideoItem({data}: DataVideoProps) {
         useNativeDriver: false,
       }),
     ).start();
-  }, [discAnimatedValue]);
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(musicNoteAnimatedValue1, {
+          toValue: 1,
+          duration: 3000,
+          easing: Easing.linear,
+          useNativeDriver: false,
+        }),
+        Animated.timing(musicNoteAnimatedValue2, {
+          toValue: 1,
+          duration: 3000,
+          easing: Easing.linear,
+          useNativeDriver: false,
+        }),
+      ]),
+    ).start();
+  }, [discAnimatedValue, musicNoteAnimatedValue1, musicNoteAnimatedValue2]);
 
   return (
-    <View style={styles.container}>
-      <Video source={{uri}} style={styles.video} resizeMode="cover" />
+    <View style={[styles.container, {height: Constant.screen.height - 10}]}>
+      <Video
+        source={{uri}}
+        style={styles.video}
+        resizeMode="cover"
+        // repeat={true}
+      />
 
       <View style={styles.bottomSection}>
         <View style={styles.bottomLeftSection}>
@@ -56,6 +93,14 @@ export default function VideoItem({data}: DataVideoProps) {
           </View>
         </View>
         <View style={styles.bottomRightSection}>
+          <Animated.Image
+            source={Constant.icons.icNoteMusic}
+            style={[styles.musicNote, musicNoteAnimation1]}
+          />
+          <Animated.Image
+            source={Constant.icons.icNoteMusic}
+            style={[styles.musicNote, musicNoteAnimation2]}
+          />
           <Animated.Image
             source={Constant.icons.icMusic}
             style={[styles.musicDisc, discAnimation]}
@@ -89,7 +134,7 @@ export default function VideoItem({data}: DataVideoProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: Constant.screen.width,
   },
   video: {
     position: 'absolute',
@@ -157,5 +202,13 @@ const styles = StyleSheet.create({
     bottom: -20,
     width: 16,
     height: 32,
+  },
+  musicNote: {
+    position: 'absolute',
+    width: 16,
+    height: 16,
+    tintColor: 'white',
+    right: 40,
+    bottom: 16,
   },
 });

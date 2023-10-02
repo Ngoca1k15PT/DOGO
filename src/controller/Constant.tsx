@@ -49,6 +49,7 @@ const Constant = {
   },
   icons: {
     icMusic: require('../assets/images/img_music.png'),
+    icNoteMusic: require('../assets/images/img_note_music.png'),
   },
 };
 
