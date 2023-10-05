@@ -1,5 +1,13 @@
-import {StyleSheet, Text, View, Image, Animated, Easing} from 'react-native';
-import React, {useRef, useEffect} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Animated,
+  Easing,
+  StatusBar,
+} from 'react-native';
+import React, {useRef, useEffect, useCallback} from 'react';
 import Video from 'react-native-video';
 import {
   MusicalIcon,
@@ -10,19 +18,21 @@ import {
 } from '../../../assets/images/svg';
 import Constant from '../../../controller/Constant';
 import {getMusicNoteAnimation} from '../../../controller/Utils';
-import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type DataVideoProps = {
   data: any;
+  isActive: boolean;
 };
 
-export default function VideoItem({data}: DataVideoProps) {
+export default function VideoItem({data, isActive}: DataVideoProps) {
   const {uri, caption, channelName, musicName, comments, avatarUri, likes} =
     data;
 
   const discAnimatedValue = useRef(new Animated.Value(0)).current;
   const musicNoteAnimatedValue1 = useRef(new Animated.Value(0)).current;
   const musicNoteAnimatedValue2 = useRef(new Animated.Value(0)).current;
+  const {bottom, top} = useSafeAreaInsets();
 
   const discAnimation = {
     transform: [
@@ -45,18 +55,21 @@ export default function VideoItem({data}: DataVideoProps) {
     isRotatedLeft: true,
   });
 
-  const bottomTabHeight = useBottomTabBarHeight();
+  const discAnimationLoopRef = useRef<any>();
+  const musicAnimationLoopRef = useRef<any>();
 
-  useEffect(() => {
-    Animated.loop(
+  const triggerAnimation = useCallback(() => {
+    discAnimationLoopRef.current = Animated.loop(
       Animated.timing(discAnimatedValue, {
         toValue: 1,
         duration: 3000,
         easing: Easing.linear,
         useNativeDriver: false,
       }),
-    ).start();
-    Animated.loop(
+    );
+    discAnimationLoopRef.current.start();
+
+    musicAnimationLoopRef.current = Animated.loop(
       Animated.sequence([
         Animated.timing(musicNoteAnimatedValue1, {
           toValue: 1,
@@ -71,16 +84,45 @@ export default function VideoItem({data}: DataVideoProps) {
           useNativeDriver: false,
         }),
       ]),
-    ).start();
-  }, [discAnimatedValue, musicNoteAnimatedValue1, musicNoteAnimatedValue2]);
+    );
+    musicAnimationLoopRef.current.start();
+  }, [discAnimatedValue, musicNoteAnimatedValue1, musicNoteAnimatedValue1]);
+
+  useEffect(() => {
+    if (isActive) {
+      triggerAnimation();
+    } else {
+      discAnimationLoopRef.current?.stop();
+      musicAnimationLoopRef.current?.stop();
+      discAnimatedValue.setValue(0);
+      musicNoteAnimatedValue1.setValue(0);
+      musicNoteAnimatedValue1.setValue(0);
+    }
+  }, [
+    isActive,
+    triggerAnimation,
+    discAnimatedValue,
+    musicNoteAnimatedValue1,
+    musicNoteAnimatedValue2,
+  ]);
 
   return (
-    <View style={[styles.container, {height: Constant.screen.height - 10}]}>
+    <View
+      style={[
+        styles.container,
+        {height: Constant.screen.height - bottom - 15},
+      ]}>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
       <Video
         source={{uri}}
         style={styles.video}
         resizeMode="cover"
-        // repeat={true}
+        paused={!isActive}
+        repeat={true}
       />
 
       <View style={styles.bottomSection}>
