@@ -1,0 +1,49 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/AmericanTypewriter-Bold.ttf",
+      "sha1": "7ee5a9f59f6a8bf4bb6e1a7126c6238a67168008"
+    },
+    {
+      "path": "src/assets/fonts/AmericanTypewriter-Condensed.ttf",
+      "sha1": "bfb9e81deb2373e5d8b141ab6dfdb464cf8a3551"
+    },
+    {
+      "path": "src/assets/fonts/AmericanTypewriter-CondensedBold.ttf",
+      "sha1": "4deae267e423d11f93a68973d11b3e3ed171601b"
+    },
+    {
+      "path": "src/assets/fonts/AmericanTypewriter-CondensedLight.ttf",
+      "sha1": "685bb94434c59bda3734cf9d56e96644a5dbffdd"
+    },
+    {
+      "path": "src/assets/fonts/AmericanTypewriter-Light.ttf",
+      "sha1": "eb4d06f1a7b00d8069ef3a286ebe26ee102d7dc4"
+    },
+    {
+      "path": "src/assets/fonts/Andale Mono.ttf",
+      "sha1": "2cd76a0098cf9ec2a74f51a0852918c489a516f4"
+    },
+    {
+      "path": "src/assets/fonts/Didot-Bold.ttf",
+      "sha1": "cb31ecba4dca5576bb07d5ce713fdf56d8c6a476"
+    },
+    {
+      "path": "src/assets/fonts/Didot-Italic.ttf",
+      "sha1": "7138d5b5777f068ba5fb4e5cc79447a28f23676b"
+    },
+    {
+      "path": "src/assets/fonts/Didot.ttf",
+      "sha1": "24869d821063d1c11d776e09249f7f1a7d8a73a4"
+    },
+    {
+      "path": "src/assets/fonts/Symbol.ttf",
+      "sha1": "509b2674a39cad78ca942613511d0b16ad0631ed"
+    },
+    {
+      "path": "src/assets/fonts/Zapfino.ttf",
+      "sha1": "babbf8a3cc0c28d961bea2566cc87ddbd7da04ad"
+    }
+  ]
+}
