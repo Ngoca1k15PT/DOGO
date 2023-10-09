@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     width: Constant.screen.width / 1.5,
     height: Constant.screen.width / 1.5,
     alignSelf: 'center',
+    marginTop: Constant.screen.height * 0.15,
   },
   body: {
     flex: 1,
@@ -41,18 +42,18 @@ const styles = StyleSheet.create({
     borderColor: '#FF4D67',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 20,
+    marginHorizontal: 40,
     borderRadius: 20,
     backgroundColor: '#FE5E75',
-    marginVertical: 25,
+    marginVertical: 20,
   },
   buttonBodyRegister: {
     height: 48,
-    borderWidth: 1.5,
+    borderWidth: 2,
     borderColor: '#FF4D67',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 20,
+    marginHorizontal: 40,
     borderRadius: 20,
   },
   textButtonLogin: {
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   },
   textRegister: {
     fontFamily: Constant.fonts.americanTypewriterCondensedBold,
-    color: '#000000',
+    color: '#FFFFFF',
     fontSize: 16,
   },
 });

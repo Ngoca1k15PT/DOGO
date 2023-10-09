@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontFamily: Constant.fonts.americanTypewriterCondensedBold,
-    color: '#000000',
+    color: '#FFFFFF',
     fontSize: 26,
   },
 });

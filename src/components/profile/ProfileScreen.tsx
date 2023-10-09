@@ -22,5 +22,6 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#1A1B22',
   },
 });
