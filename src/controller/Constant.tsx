@@ -51,6 +51,14 @@ const Constant = {
     icMusic: require('../assets/images/img_music.png'),
     icNoteMusic: require('../assets/images/img_note_music.png'),
     imgNotLogin: require('../assets/images/img_not_login.png'),
+    icEditProfile: require('../assets/images/ic_edit_profile.png'),
+    icHelp: require('../assets/images/ic_help.png'),
+    icLogOut: require('../assets/images/ic_log_out.png'),
+    icSecurity: require('../assets/images/ic_security.png'),
+    icTerms: require('../assets/images/ic_terms.png'),
+    icRightOut: require('../assets/images/ic_chevron_right.png'),
+    icSetting: require('../assets/images/ic_settings.png'),
+    icPolicy: require('../assets/images/ic_policy.png'),
   },
 };
 
