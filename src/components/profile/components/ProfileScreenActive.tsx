@@ -9,12 +9,19 @@ import {
 } from 'react-native';
 import Constant from '../../../controller/Constant';
 import DataProfileModel from '../../../controller/ListDataProfile';
+import {useNavigation} from '@react-navigation/native';
 
 type dataItem = {
   data: any;
 };
 
+export type RootStackParamList = {
+  LiveStreamScreen: undefined;
+};
+
 const ItemList = ({data}: dataItem) => {
+  const navigation = useNavigation();
+
   const getIcon = () => {
     return data.status == false ? (
       <Image
@@ -27,8 +34,12 @@ const ItemList = ({data}: dataItem) => {
     );
   };
 
+  const handleOnclickItem = () => {
+    navigation.navigate(Constant.screenName.LiveStreamScreen as never);
+  };
+
   return (
-    <TouchableOpacity style={styles.buttonView}>
+    <TouchableOpacity style={styles.buttonView} onPress={handleOnclickItem}>
       <View style={styles.viewBodyButton}>
         <Image
           source={data.icon}
