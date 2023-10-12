@@ -12,6 +12,7 @@ const Constant = {
     video: 'Video',
     profile: 'Profile',
     tabBarNavigation: 'TabBarNavigation',
+    LiveStreamScreen: 'LiveStreamScreen',
   },
   color: {
     primary: '#1DA1F2',
@@ -59,6 +60,7 @@ const Constant = {
     icRightOut: require('../assets/images/ic_chevron_right.png'),
     icSetting: require('../assets/images/ic_settings.png'),
     icPolicy: require('../assets/images/ic_policy.png'),
+    icArrowLeft: require('../assets/images/ic_arrow_left.png'),
   },
 };
 
