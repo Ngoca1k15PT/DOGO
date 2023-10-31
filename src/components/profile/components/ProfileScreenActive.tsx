@@ -57,6 +57,15 @@ const ProfileScreenActive = () => {
   return (
     <View style={styles.container}>
       <ScrollView>
+        <View style={styles.profileView}>
+          <Image
+            source={{
+              uri: 'https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/30cc01b4-1c53-45f3-a990-b349ee1dd38b/width=450/00004-1163213725.jpeg',
+            }}
+            style={styles.avatar}
+          />
+          <Text style={styles.textName}>Đinh Hoàng Ngọc</Text>
+        </View>
         {DataProfileModel.map(item => {
           return <ItemList data={item} />;
         })}
@@ -98,5 +107,21 @@ const styles = StyleSheet.create({
   viewIconChevron: {
     width: 15,
     height: 15,
+  },
+  profileView: {
+    alignItems: 'center',
+    marginVertical: 25,
+  },
+  avatar: {
+    height: 120,
+    width: 120,
+    borderRadius: 60,
+    resizeMode: 'cover',
+  },
+  textName: {
+    color: Constant.color.lightPurple,
+    fontSize: 22,
+    fontFamily: Constant.fonts.americanTypewriterBold,
+    marginTop: 8,
   },
 });

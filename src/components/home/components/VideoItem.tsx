@@ -110,7 +110,12 @@ export default function VideoItem({data, isActive}: DataVideoProps) {
     <View
       style={[
         styles.container,
-        {height: Constant.screen.height - bottom - 15},
+        {
+          width: Constant.screen.width,
+          height:
+            // Constant.screen.height - bottom - 49 + StatusBar.currentHeight,
+            Constant.screen.height - 50 + StatusBar.currentHeight,
+        },
       ]}>
       <StatusBar
         translucent
@@ -180,7 +185,7 @@ const styles = StyleSheet.create({
   },
   video: {
     position: 'absolute',
-    width: '100%',
+    width: Constant.screen.width,
     height: '100%',
   },
   bottomSection: {

@@ -13,6 +13,8 @@ const Constant = {
     profile: 'Profile',
     tabBarNavigation: 'TabBarNavigation',
     LiveStreamScreen: 'LiveStreamScreen',
+    LoginScreen: 'LoginScreen',
+    RegisterScreen: 'RegisterScreen',
   },
   color: {
     primary: '#1DA1F2',
@@ -61,6 +63,8 @@ const Constant = {
     icSetting: require('../assets/images/ic_settings.png'),
     icPolicy: require('../assets/images/ic_policy.png'),
     icArrowLeft: require('../assets/images/ic_arrow_left.png'),
+    icMail: require('../assets/images/ic_mail.png'),
+    imgLogin: require('../assets/images/auth/img_login.png'),
   },
 };
 
