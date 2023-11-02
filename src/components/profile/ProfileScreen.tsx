@@ -8,11 +8,11 @@ import ProfileScreenActive from './components/ProfileScreenActive';
 interface componentNameProps {}
 
 const ProfileScreen = (props: componentNameProps) => {
-  const isActive = true;
+  const isActive = false;
 
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderComponents />
+      {/* <HeaderComponents /> */}
       {isActive ? <ProfileScreenActive /> : <ProfileScreenNotActive />}
     </SafeAreaView>
   );

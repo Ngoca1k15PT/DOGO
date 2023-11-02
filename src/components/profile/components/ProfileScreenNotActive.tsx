@@ -1,8 +1,15 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Constant from '../../../controller/Constant';
+import {useNavigation} from '@react-navigation/native';
 
 const ProfileScreenNotActive = () => {
+  const navigation = useNavigation();
+
+  const handleClickLogin = () => {
+    navigation.navigate(Constant.screenName.LoginScreen as never);
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -10,7 +17,9 @@ const ProfileScreenNotActive = () => {
         style={styles.imgHeaderNotLogin}
       />
       <View style={styles.body}>
-        <TouchableOpacity style={styles.buttonBodyLogin}>
+        <TouchableOpacity
+          style={styles.buttonBodyLogin}
+          onPress={handleClickLogin}>
           <Text style={styles.textButtonLogin}>Đăng Nhập</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonBodyRegister}>

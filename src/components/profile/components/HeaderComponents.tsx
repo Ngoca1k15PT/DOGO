@@ -5,7 +5,7 @@ import Constant from '../../../controller/Constant';
 const HeaderComponents = () => {
   return (
     <View style={styles.containerHeader}>
-      <Text style={styles.textHeader}>Profile</Text>
+      <Text style={styles.textHeader}>Hồ Sơ</Text>
     </View>
   );
 };
