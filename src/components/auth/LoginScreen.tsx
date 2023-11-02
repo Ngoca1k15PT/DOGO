@@ -1,7 +1,15 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, SafeAreaView, Image} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import InputCustom from './components/InputCustom';
 import Constant from '../../controller/Constant';
+import ButtonDefault from './components/ButtonDefault';
 
 interface componentNameProps {}
 
@@ -31,6 +39,27 @@ const LoginScreen = (props: componentNameProps) => {
         textPlaceholder={'Mật Khẩu'}
         customStyle={{marginHorizontal: 30}}
       />
+      <View style={styles.viewBottom}>
+        <ButtonDefault
+          label="Đăng Nhập"
+          style={{
+            backgroundColor: '#FF4D67',
+            borderRadius: 26,
+            marginHorizontal: 40,
+            height: 48,
+            marginTop: 40,
+          }}
+          styleLabel={{
+            color: 'white',
+          }}
+        />
+        <View style={styles.viewRegister}>
+          <Text style={styles.textQuestion}>Nguời dùng mới ?</Text>
+          <TouchableOpacity>
+            <Text style={styles.textRegister}>Đăng ký ngay</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -49,5 +78,22 @@ const styles = StyleSheet.create({
   },
   img: {
     marginLeft: 30,
+  },
+  viewBottom: {
+    marginHorizontal: 20,
+  },
+  viewRegister: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  textQuestion: {
+    color: 'white',
+    fontFamily: Constant.fonts.americanTypewriterCondensedBold,
+    marginRight: 5,
+  },
+  textRegister: {
+    color: '#FF4D67',
+    fontFamily: Constant.fonts.americanTypewriterBold,
   },
 });
