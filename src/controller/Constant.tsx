@@ -65,6 +65,7 @@ const Constant = {
     icArrowLeft: require('../assets/images/ic_arrow_left.png'),
     icMail: require('../assets/images/ic_mail.png'),
     imgLogin: require('../assets/images/auth/img_login.png'),
+    imgRegister: require('../assets/images/auth/img_register.png'),
   },
 };
 
