@@ -9,6 +9,7 @@ import {StatusBar} from 'react-native';
 import Constant from '../../controller/Constant';
 import LiveStreamScreen from '../live/LiveStreamScreen';
 import LoginScreen from '../auth/LoginScreen';
+import RegisterScreen from '../auth/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,10 @@ const RootNavigation = () => {
         <Stack.Screen
           name={Constant.screenName.LoginScreen}
           component={LoginScreen}
+        />
+        <Stack.Screen
+          name={Constant.screenName.RegisterScreen}
+          component={RegisterScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -10,12 +10,15 @@ import {
 import InputCustom from './components/InputCustom';
 import Constant from '../../controller/Constant';
 import ButtonDefault from './components/ButtonDefault';
+import {useNavigation} from '@react-navigation/native';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 interface componentNameProps {}
 
 const LoginScreen = (props: componentNameProps) => {
   const [email, setEmail] = useState();
   const [passWord, setPassWord] = useState();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,6 +42,20 @@ const LoginScreen = (props: componentNameProps) => {
         textPlaceholder={'Mật Khẩu'}
         customStyle={{marginHorizontal: 30}}
       />
+      <BouncyCheckbox
+        size={20}
+        fillColor="red"
+        unfillColor="#FFFFFF"
+        text="Hiển thị mật khẩu"
+        iconStyle={{borderColor: 'red'}}
+        innerIconStyle={{borderWidth: 2}}
+        textStyle={{
+          fontFamily: Constant.fonts.americanTypewriterCondensedBold,
+          textDecorationLine: 'none',
+          color: 'white',
+        }}
+        onPress={(isChecked: boolean) => {}}
+      />
       <View style={styles.viewBottom}>
         <ButtonDefault
           label="Đăng Nhập"
@@ -55,7 +72,10 @@ const LoginScreen = (props: componentNameProps) => {
         />
         <View style={styles.viewRegister}>
           <Text style={styles.textQuestion}>Nguời dùng mới ?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(Constant.screenName.RegisterScreen as never)
+            }>
             <Text style={styles.textRegister}>Đăng ký ngay</Text>
           </TouchableOpacity>
         </View>
