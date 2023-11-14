@@ -66,6 +66,10 @@ const Constant = {
     icMail: require('../assets/images/ic_mail.png'),
     imgLogin: require('../assets/images/auth/img_login.png'),
     imgRegister: require('../assets/images/auth/img_register.png'),
+    imgWelcome: require('../assets/images/img_welcome.png'),
+    imgSplashOne: require('../assets/images/img_splash_one.png'),
+    imgSplashTwo: require('../assets/images/img_splash_two.png'),
+    imgSplashThree: require('../assets/images/img_splash_three.png'),
   },
 };
 
