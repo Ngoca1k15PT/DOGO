@@ -10,12 +10,51 @@ import {
 import InputCustom from './components/InputCustom';
 import Constant from '../../controller/Constant';
 import ButtonDefault from './components/ButtonDefault';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+import { toast } from '@baronha/ting';
 
 interface componentNameProps {}
 
 const RegisterScreen = (props: componentNameProps) => {
   const [email, setEmail] = useState();
   const [passWord, setPassWord] = useState();
+  const [confirmPassWord, setConfirmPassWord] = useState();
+  const [check, setCheck] = useState(true)
+  
+  const navigation = useNavigation()
+
+  const handleOnclickRegister = () => {
+    if (!email) {
+      toast({title: 'Lỗi 😎',message: 'Email không được để trống!!',preset:'error'});
+    } else if(!passWord) {
+      toast({title: 'Lỗi 😎',message: 'Mật khẩu không được để trống!!',preset:'error'});
+    } else if (passWord != confirmPassWord) {
+      toast({title: 'Lỗi 😎',message: 'Mật khẩu không khớp!!',preset:'error'});
+    } else {
+      auth()
+        .createUserWithEmailAndPassword(email, passWord)
+        .then(() => {
+          toast({ title: 'Thành công 😎', message: 'Đăng ký tài khoản thành công !', preset: 'done' });
+          setTimeout(() => {
+            navigation.goBack()
+          },3000)
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            console.log('That email address is already in use!');
+          }
+
+          if (error.code === 'auth/invalid-email') {
+            console.log('That email address is invalid!');
+          }
+
+          console.error(error);
+        });
+      
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,6 +70,7 @@ const RegisterScreen = (props: componentNameProps) => {
           marginHorizontal: 30,
           marginBottom: 20,
         }}
+        check={false}
       />
       <InputCustom
         value={passWord}
@@ -41,13 +81,33 @@ const RegisterScreen = (props: componentNameProps) => {
           marginHorizontal: 30,
           marginBottom: 20,
         }}
+        check = {check}
       />
       <InputCustom
-        value={passWord}
-        setValue={setPassWord}
+        value={confirmPassWord}
+        setValue={setConfirmPassWord}
         type={'security'}
         textPlaceholder={'Nhập Lại Mật Khẩu'}
-        customStyle={{marginHorizontal: 30}}
+        customStyle={{ marginHorizontal: 30 }}
+        check = {check}
+      />
+      <BouncyCheckbox
+        size={20}
+        fillColor="red"
+        unfillColor="#FFFFFF"
+        text="Hiển thị mật khẩu"
+        iconStyle={{borderColor: 'red'}}
+        innerIconStyle={{borderWidth: 2}}
+        textStyle={{
+          fontFamily: Constant.fonts.americanTypewriterCondensedBold,
+          textDecorationLine: 'none',
+          color: 'white',
+        }}
+        onPress={(isChecked: boolean) => {setCheck(!isChecked)}}
+        style={{
+          marginTop:10,
+          marginHorizontal: 30
+        }}
       />
       <View style={styles.viewBottom}>
         <ButtonDefault
@@ -62,10 +122,11 @@ const RegisterScreen = (props: componentNameProps) => {
           styleLabel={{
             color: 'white',
           }}
+          onPress={handleOnclickRegister}
         />
         <View style={styles.viewLogin}>
           <Text style={styles.textQuestion}>Đã có tài khoản ?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text style={styles.textLogin}>Đăng nhập</Text>
           </TouchableOpacity>
         </View>

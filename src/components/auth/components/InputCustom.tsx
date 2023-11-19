@@ -9,6 +9,7 @@ interface componentNameProps {
   type: any;
   customStyle: {};
   textPlaceholder: any;
+  check: boolean;
 }
 
 const InputCustom = ({
@@ -17,6 +18,7 @@ const InputCustom = ({
   type,
   customStyle,
   textPlaceholder,
+  check = true
 }: componentNameProps) => {
   const checkTypeIcon = () => {
     switch (type) {
@@ -46,9 +48,10 @@ const InputCustom = ({
     <View style={[styles.container, customStyle]}>
       <TextInput
         value={value}
-        onChange={text => setValue(text)}
+        onChangeText={text => setValue(text)}
         style={styles.inputStyle}
         placeholder={textPlaceholder}
+        secureTextEntry={check}
       />
       {checkTypeIcon()}
     </View>

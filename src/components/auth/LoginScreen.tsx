@@ -18,6 +18,7 @@ interface componentNameProps {}
 const LoginScreen = (props: componentNameProps) => {
   const [email, setEmail] = useState();
   const [passWord, setPassWord] = useState();
+  const [check,setCheck] = useState(true)
   const navigation = useNavigation();
 
   return (
@@ -34,13 +35,15 @@ const LoginScreen = (props: componentNameProps) => {
           marginHorizontal: 30,
           marginBottom: 20,
         }}
+        check ={false}
       />
       <InputCustom
         value={passWord}
         setValue={setPassWord}
         type={'security'}
         textPlaceholder={'Mật Khẩu'}
-        customStyle={{marginHorizontal: 30}}
+        customStyle={{ marginHorizontal: 30 }}
+        check = {check}
       />
       <BouncyCheckbox
         size={20}
@@ -54,7 +57,11 @@ const LoginScreen = (props: componentNameProps) => {
           textDecorationLine: 'none',
           color: 'white',
         }}
-        onPress={(isChecked: boolean) => {}}
+        onPress={(isChecked: boolean) => {setCheck(!isChecked)}}
+        style={{
+          marginTop:10,
+          marginHorizontal: 30
+        }}
       />
       <View style={styles.viewBottom}>
         <ButtonDefault
