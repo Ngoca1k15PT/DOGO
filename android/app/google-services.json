@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "787963610119",
+    "project_id": "dogo-bde22",
+    "storage_bucket": "dogo-bde22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787963610119:android:99db2a0038198bf423d6a2",
+        "android_client_info": {
+          "package_name": "com.dogo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl8qHqPKLDwOsLH8J1sZT_KyzQsnO305E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

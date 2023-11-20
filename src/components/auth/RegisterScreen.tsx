@@ -11,9 +11,10 @@ import InputCustom from './components/InputCustom';
 import Constant from '../../controller/Constant';
 import ButtonDefault from './components/ButtonDefault';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-import { toast } from '@baronha/ting';
+import {toast} from '@baronha/ting';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 interface componentNameProps {}
 
@@ -21,25 +22,48 @@ const RegisterScreen = (props: componentNameProps) => {
   const [email, setEmail] = useState();
   const [passWord, setPassWord] = useState();
   const [confirmPassWord, setConfirmPassWord] = useState();
-  const [check, setCheck] = useState(true)
-  
-  const navigation = useNavigation()
+  const [check, setCheck] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const navigation = useNavigation();
 
   const handleOnclickRegister = () => {
+    setIsLoading(true);
     if (!email) {
-      toast({title: 'Lỗi 😎',message: 'Email không được để trống!!',preset:'error'});
-    } else if(!passWord) {
-      toast({title: 'Lỗi 😎',message: 'Mật khẩu không được để trống!!',preset:'error'});
+      toast({
+        title: 'Lỗi 😎',
+        message: 'Email không được để trống!!',
+        preset: 'error',
+      });
+    } else if (!passWord) {
+      toast({
+        title: 'Lỗi 😎',
+        message: 'Mật khẩu không được để trống!!',
+        preset: 'error',
+      });
     } else if (passWord != confirmPassWord) {
-      toast({title: 'Lỗi 😎',message: 'Mật khẩu không khớp!!',preset:'error'});
+      toast({
+        title: 'Lỗi 😎',
+        message: 'Mật khẩu không khớp!!',
+        preset: 'error',
+      });
     } else {
+      <Spinner
+        visible={isLoading}
+        textContent={'Loading...'}
+        textStyle={styles.spinnerTextStyle}
+      />;
       auth()
         .createUserWithEmailAndPassword(email, passWord)
         .then(() => {
-          toast({ title: 'Thành công 😎', message: 'Đăng ký tài khoản thành công !', preset: 'done' });
+          toast({
+            title: 'Thành công 😎',
+            message: 'Đăng ký tài khoản thành công !',
+            preset: 'done',
+          });
           setTimeout(() => {
-            navigation.goBack()
-          },3000)
+            navigation.goBack();
+          }, 3000);
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
@@ -51,10 +75,12 @@ const RegisterScreen = (props: componentNameProps) => {
           }
 
           console.error(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
-      
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -81,15 +107,15 @@ const RegisterScreen = (props: componentNameProps) => {
           marginHorizontal: 30,
           marginBottom: 20,
         }}
-        check = {check}
+        check={check}
       />
       <InputCustom
         value={confirmPassWord}
         setValue={setConfirmPassWord}
         type={'security'}
         textPlaceholder={'Nhập Lại Mật Khẩu'}
-        customStyle={{ marginHorizontal: 30 }}
-        check = {check}
+        customStyle={{marginHorizontal: 30}}
+        check={check}
       />
       <BouncyCheckbox
         size={20}
@@ -103,10 +129,12 @@ const RegisterScreen = (props: componentNameProps) => {
           textDecorationLine: 'none',
           color: 'white',
         }}
-        onPress={(isChecked: boolean) => {setCheck(!isChecked)}}
+        onPress={(isChecked: boolean) => {
+          setCheck(!isChecked);
+        }}
         style={{
-          marginTop:10,
-          marginHorizontal: 30
+          marginTop: 10,
+          marginHorizontal: 30,
         }}
       />
       <View style={styles.viewBottom}>
@@ -167,5 +195,8 @@ const styles = StyleSheet.create({
   textLogin: {
     color: '#FF4D67',
     fontFamily: Constant.fonts.americanTypewriterBold,
+  },
+  spinnerTextStyle: {
+    color: '#FFF',
   },
 });
