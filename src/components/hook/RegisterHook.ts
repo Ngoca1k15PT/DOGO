@@ -36,10 +36,10 @@ export const RegisterHook = () => {
                 }
 
                 if (error.code === 'auth/invalid-email') {
-                    console.log('Địa chỉ email đó không hợp lệ!')
+                    console.log('Địa chỉ email không hợp lệ!')
                     toast({
                         title: 'Lỗi 😓',
-                        message: '🙄 Địa chỉ email đó không hợp lệ!!',
+                        message: '🙄 Địa chỉ email không hợp lệ!!',
                         preset: 'error'
                     })
                 }

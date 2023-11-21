@@ -5,6 +5,8 @@ import Constant from '../../controller/Constant'
 import ButtonDefault from './components/ButtonDefault'
 import { useNavigation } from '@react-navigation/native'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
+import { LoginHook } from '../hook/LoginHook'
+import { toast } from '@baronha/ting'
 
 interface componentNameProps {}
 
@@ -13,6 +15,26 @@ const LoginScreen = (props: componentNameProps) => {
     const [passWord, setPassWord] = useState()
     const [check, setCheck] = useState(true)
     const navigation = useNavigation()
+
+    const { handleLogin } = LoginHook()
+
+    const handleOnclickLogin = () => {
+        if (!email) {
+            toast({
+                title: 'Lỗi 😓',
+                message: '🙄 Email không được để trống!!',
+                preset: 'error'
+            })
+        } else if (!passWord) {
+            toast({
+                title: 'Lỗi 😓',
+                message: '🙄 Mật khẩu không được để trống!!',
+                preset: 'error'
+            })
+        } else {
+            handleLogin(email, passWord)
+        }
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -71,6 +93,7 @@ const LoginScreen = (props: componentNameProps) => {
                     styleLabel={{
                         color: 'white'
                     }}
+                    onPress={handleOnclickLogin}
                 />
                 <View style={styles.viewRegister}>
                     <Text style={styles.textQuestion}>Nguời dùng mới ?</Text>
