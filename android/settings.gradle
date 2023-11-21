@@ -6,3 +6,5 @@ include ':react-native-video'
 project(':react-native-video').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-video/android')
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+include ':progress-hud'
+project(':progress-hud').projectDir = new File(rootProject.projectDir, '../node_modules/progress-hud/android')
