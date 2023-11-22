@@ -1,8 +1,15 @@
 {
     "compilerOptions": {
+        "baseUrl": "src",
         "jsx": "react",
         "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+            "@controller/*": ["controller/*"],
+            "@components/*": ["components/*"],
+            "@model/*": ["model/*"],
+            "@assets/*": ["assets/*"]
+        }
     },
     "extends": "@tsconfig/react-native/tsconfig.json"
 }

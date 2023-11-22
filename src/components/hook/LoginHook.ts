@@ -2,7 +2,7 @@ import auth from '@react-native-firebase/auth'
 import { toast } from '@baronha/ting'
 import RNProgressHud from 'progress-hud'
 import { useNavigation } from '@react-navigation/native'
-import Constant from '../../controller/Constant'
+import Constant from '@controller/Constant'
 
 export const LoginHook = () => {
     const navigation = useNavigation()
@@ -12,18 +12,21 @@ export const LoginHook = () => {
         RNProgressHud.showWithStatus('Xin chờ...', ProgressHUDMaskType.Clear)
         auth()
             .signInWithEmailAndPassword(email, passWord)
-            .then(() => {
+            .then((res) => {
                 toast({
                     title: 'Thành công 😎',
                     message: '😍 Đăng nhập thành công !',
                     preset: 'done'
                 })
-                setTimeout(() => {
-                    navigation.reset({
-                        index: 0,
-                        routes: [{ name: Constant.screenName.tabBarNavigation as never }]
-                    })
-                }, 3000)
+                console.log('kk', res.user.uid)
+                console.log('kk', res.user.getIdToken())
+                console.log('kk', res.user.providerData)
+                // setTimeout(() => {
+                //     navigation.reset({
+                //         index: 0,
+                //         routes: [{ name: Constant.screenName.tabBarNavigation as never }]
+                //     })
+                // }, 3000)
             })
             .catch((error) => {
                 if (error.code === 'auth/invalid-email') {
