@@ -71,6 +71,9 @@ const Constant = {
         imgSplashOne: require('@assets/images/img_splash_one.png'),
         imgSplashTwo: require('@assets/images/img_splash_two.png'),
         imgSplashThree: require('@assets/images/img_splash_three.png')
+    },
+    keys: {
+        currentUser: 'currentUser'
     }
 }
 
