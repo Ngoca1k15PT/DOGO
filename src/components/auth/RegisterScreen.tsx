@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Text, View, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import InputCustom from './components/InputCustom'
-import Constant from '@controller/Constant'
+import Constant from '../../controller/Constant'
 import ButtonDefault from './components/ButtonDefault'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { useNavigation } from '@react-navigation/native'
 import { toast } from '@baronha/ting'
-import { RegisterHook } from '@hook/RegisterHook'
+import { RegisterHook } from '../../hook/RegisterHook'
 
 interface componentNameProps {}
 

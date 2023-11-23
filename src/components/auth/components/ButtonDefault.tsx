@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native'
-import Constant from '@controller/Constant'
+import Constant from '../../../controller/Constant'
 
 type Props = {
     style?: ViewStyle

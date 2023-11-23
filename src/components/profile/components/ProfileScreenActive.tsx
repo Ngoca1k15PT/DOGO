@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
-import Constant from '@controller/Constant'
-import DataProfileModel from '@controller/ListDataProfile'
+import Constant from '../../../controller/Constant'
+import DataProfileModel from '../../../controller/ListDataProfile'
 import { useNavigation } from '@react-navigation/native'
 
 type dataItem = {

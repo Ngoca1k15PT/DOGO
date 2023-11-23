@@ -1,4 +1,4 @@
-import UserModel from '@model/UseModel'
+import UserModel from '../model/UseModel'
 
 export default class AppManager {
     static shared = new AppManager()

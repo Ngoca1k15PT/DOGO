@@ -9,7 +9,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import AgoraUIKit from 'agora-rn-uikit'
-import Constant from '@controller/Constant'
+import Constant from '../../controller/Constant'
 
 export default function ChatScreen() {
     const [videoCall, setVideoCall] = useState(true)

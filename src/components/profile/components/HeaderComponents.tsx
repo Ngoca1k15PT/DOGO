@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
-import Constant from '@controller/Constant'
+import Constant from '../../../controller/Constant'
 
 const HeaderComponents = () => {
     return (

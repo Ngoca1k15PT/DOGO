@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image, Animated, Easing, StatusBar } from 'react-native'
 import React, { useRef, useEffect, useCallback } from 'react'
 import Video from 'react-native-video'
-import { MusicalIcon, HeartIcon, ChatIcon, ArrowIcon, AddIcon } from '@assets/images/svg'
-import Constant from '@controller/Constant'
-import { getMusicNoteAnimation } from '@controller/Utils'
+import { MusicalIcon, HeartIcon, ChatIcon, ArrowIcon, AddIcon } from '../../../assets/images/svg'
+import Constant from '../../../controller/Constant'
+import { getMusicNoteAnimation } from '../../../controller/Utils'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 type DataVideoProps = {
@@ -107,7 +107,7 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
             <Video
                 source={{ uri }}
                 style={styles.video}
-                resizeMode={'cover'}
+                resizeMode={'cover' as never}
                 paused={!isActive}
                 repeat={true}
             />

@@ -2,7 +2,7 @@ import auth from '@react-native-firebase/auth'
 import { toast } from '@baronha/ting'
 import RNProgressHud from 'progress-hud'
 import { useNavigation } from '@react-navigation/native'
-import Constant from '@controller/Constant'
+import Constant from '../controller/Constant'
 
 export const LoginHook = () => {
     const navigation = useNavigation()

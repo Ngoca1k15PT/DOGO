@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import Constant from '@controller/Constant'
+import Constant from '../../../controller/Constant'
 import { useNavigation } from '@react-navigation/native'
 
 const ProfileScreenNotActive = () => {

@@ -1,9 +1,9 @@
 import { View, StatusBar, FlatList } from 'react-native'
 import React, { useState } from 'react'
-import VideoModel from '@controller/VideoData'
+import VideoModel from '../../controller/VideoData'
 import VideoItem from './components/VideoItem'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import Constant from '@controller/Constant'
+import Constant from '../../controller/Constant'
 
 export default function HomeScreen() {
     const [activeVideoIndex, setActiveVideoIndex] = useState(0)

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Text, View, StyleSheet, Image, StatusBar, TouchableOpacity } from 'react-native'
-import Constant from '@controller/Constant'
+import Constant from '../../../controller/Constant'
 
 interface componentNameProps {}
 

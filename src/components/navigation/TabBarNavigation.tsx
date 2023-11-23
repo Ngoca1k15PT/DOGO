@@ -38,10 +38,10 @@ const TabBarNavigation = () => {
             <Tab.Screen
                 name='Home'
                 options={{
-                    tabBarIcon: ({ ref }) => (
+                    tabBarIcon: ({ ref }: any) => (
                         <LottieView
                             ref={ref}
-                            source={require('@assets/lottie/home.icon.json')}
+                            source={require('../../assets/lottie/home.icon.json')}
                             autoPlay
                             loop={false}
                             style={styles.icon}
@@ -54,7 +54,7 @@ const TabBarNavigation = () => {
                 name='Video'
                 component={VideoScreen}
                 options={{
-                    tabBarIcon: ({ ref }) => (
+                    tabBarIcon: ({ ref }: any) => (
                         <LottieView
                             ref={ref}
                             source={require('../../assets/lottie/setting.icon.json')}
@@ -69,10 +69,10 @@ const TabBarNavigation = () => {
                 name='Chat'
                 component={ChatScreen}
                 options={{
-                    tabBarIcon: ({ ref }) => (
+                    tabBarIcon: ({ ref }: any) => (
                         <LottieView
                             ref={ref}
-                            source={require('@assets/lottie/chat.icon.json')}
+                            source={require('../../assets/lottie/chat.icon.json')}
                             autoPlay
                             loop={false}
                             style={{
@@ -87,10 +87,10 @@ const TabBarNavigation = () => {
                 name='Profile'
                 component={ProfileScreen}
                 options={{
-                    tabBarIcon: ({ ref }) => (
+                    tabBarIcon: ({ ref }: any) => (
                         <LottieView
                             ref={ref}
-                            source={require('@assets/lottie/profile.icon.json')}
+                            source={require('../../assets/lottie/profile.icon.json')}
                             autoPlay
                             loop={false}
                             style={styles.icon}
@@ -198,7 +198,7 @@ const TabBarComponent = ({ active, onLayout, onPress, options }: TabBarComponent
         <Pressable onPress={onPress} onLayout={onLayout} style={styles.component}>
             <Animated.View style={[styles.componentCircle, animatedComponentCircleStyles]}>
                 <Animated.View style={[styles.iconContainer, animatedIconContainerStyles]}>
-                    {options.tabBarIcon ? options.tabBarIcon({ ref }) : <Text>?</Text>}
+                    {options.tabBarIcon ? options.tabBarIcon({ ref } as never) : <Text>?</Text>}
                 </Animated.View>
             </Animated.View>
         </Pressable>
