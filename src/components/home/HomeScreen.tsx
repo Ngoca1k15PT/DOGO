@@ -1,4 +1,4 @@
-import { View, StatusBar, FlatList } from 'react-native'
+import { View, StatusBar, FlatList, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import VideoModel from '../../controller/VideoData'
 import VideoItem from './components/VideoItem'
@@ -31,8 +31,15 @@ export default function HomeScreen() {
                         )
                         setActiveVideoIndex(index)
                     }}
+                    style={styles.container}
                 />
             </View>
         </>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})

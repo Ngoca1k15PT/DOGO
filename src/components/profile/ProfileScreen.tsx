@@ -4,11 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import ProfileScreenNotActive from './components/ProfileScreenNotActive'
 import ProfileScreenActive from './components/ProfileScreenActive'
 import Constant from '../../controller/Constant'
+import AppManager from '../../controller/AppManager'
 
 interface componentNameProps {}
 
 const ProfileScreen = (props: componentNameProps) => {
-    const isActive = false
+    const isActive = AppManager.shared.currentUser?.isActivity
 
     return (
         <SafeAreaView style={styles.container}>

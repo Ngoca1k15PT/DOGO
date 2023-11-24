@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import InputCustom from './components/InputCustom'
 import Constant from '../../controller/Constant'
 import ButtonDefault from './components/ButtonDefault'
@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { LoginHook } from '../../hook/LoginHook'
 import { toast } from '@baronha/ting'
+import { ScaledSheet } from 'react-native-size-matters'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 interface componentNameProps {}
 
@@ -37,7 +39,8 @@ const LoginScreen = (props: componentNameProps) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <KeyboardAwareScrollView style={styles.container} enableOnAndroid={true}>
+            {/* <View style={styles.container}> */}
             <View style={styles.viewImage}>
                 <Image source={Constant.icons.imgLogin} style={styles.img} />
             </View>
@@ -46,10 +49,7 @@ const LoginScreen = (props: componentNameProps) => {
                 setValue={setEmail}
                 type={'mail'}
                 textPlaceholder={'Email'}
-                customStyle={{
-                    marginHorizontal: 30,
-                    marginBottom: 20
-                }}
+                customStyle={styles.customStyle}
                 check={false}
             />
             <InputCustom
@@ -57,7 +57,7 @@ const LoginScreen = (props: componentNameProps) => {
                 setValue={setPassWord}
                 type={'security'}
                 textPlaceholder={'Mật Khẩu'}
-                customStyle={{ marginHorizontal: 30 }}
+                customStyle={styles.inputCustom}
                 check={check}
             />
             <BouncyCheckbox
@@ -75,21 +75,12 @@ const LoginScreen = (props: componentNameProps) => {
                 onPress={(isChecked: boolean) => {
                     setCheck(!isChecked)
                 }}
-                style={{
-                    marginTop: 10,
-                    marginHorizontal: 30
-                }}
+                style={styles.checkBox}
             />
             <View style={styles.viewBottom}>
                 <ButtonDefault
                     label='Đăng Nhập'
-                    style={{
-                        backgroundColor: '#FF4D67',
-                        borderRadius: 26,
-                        marginHorizontal: 40,
-                        height: 48,
-                        marginTop: 40
-                    }}
+                    style={styles.buttonLogin}
                     styleLabel={{
                         color: 'white'
                     }}
@@ -106,40 +97,60 @@ const LoginScreen = (props: componentNameProps) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </SafeAreaView>
+            {/* </View> */}
+        </KeyboardAwareScrollView>
     )
 }
 
 export default LoginScreen
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         // justifyContent: 'center',
+        height: Constant.screen.height,
         backgroundColor: Constant.color.backGround
     },
     viewImage: {
         alignItems: 'center',
-        marginTop: Constant.screen.height * 0.2
+        marginTop: '140@ms'
     },
     img: {
-        marginLeft: 30
+        marginLeft: '30@ms'
     },
     viewBottom: {
-        marginHorizontal: 20
+        marginHorizontal: '20@ms'
     },
     viewRegister: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 20
+        marginTop: '20@ms'
     },
     textQuestion: {
         color: 'white',
         fontFamily: Constant.fonts.americanTypewriterCondensedBold,
-        marginRight: 5
+        marginRight: '5@ms'
     },
     textRegister: {
         color: '#FF4D67',
         fontFamily: Constant.fonts.americanTypewriterBold
+    },
+    customStyle: {
+        marginHorizontal: '30@ms',
+        marginBottom: '20@ms'
+    },
+    buttonLogin: {
+        backgroundColor: '#FF4D67',
+        borderRadius: '26@ms',
+        marginHorizontal: '40@ms',
+        height: '48@ms',
+        marginTop: '40@ms'
+    },
+    inputCustom: {
+        marginHorizontal: '30@ms'
+    },
+    checkBox: {
+        marginTop: '12@ms',
+        marginHorizontal: '30@ms'
     }
 })

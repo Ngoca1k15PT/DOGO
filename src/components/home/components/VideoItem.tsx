@@ -5,6 +5,7 @@ import { MusicalIcon, HeartIcon, ChatIcon, ArrowIcon, AddIcon } from '../../../a
 import Constant from '../../../controller/Constant'
 import { getMusicNoteAnimation } from '../../../controller/Utils'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { ScaledSheet } from 'react-native-size-matters'
 
 type DataVideoProps = {
     data: any
@@ -99,7 +100,7 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
                     width: Constant.screen.width,
                     height:
                         // Constant.screen.height - bottom - 49 + StatusBar.currentHeight,
-                        Constant.screen.height - 50 + StatusBar.currentHeight
+                        Constant.screen.height - 49 + StatusBar.currentHeight
                 }
             ]}
         >
@@ -111,7 +112,6 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
                 paused={!isActive}
                 repeat={true}
             />
-
             <View style={styles.bottomSection}>
                 <View style={styles.bottomLeftSection}>
                     <Text style={styles.channelName}>{channelName}</Text>
@@ -136,7 +136,6 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
                     />
                 </View>
             </View>
-
             <View style={styles.verticalBar}>
                 <View style={[styles.verticalBarItem, styles.avatarContainer]}>
                     <Image source={{ uri: avatarUri }} style={styles.avatar} />
@@ -161,22 +160,24 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
     )
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container: {
         width: Constant.screen.width
     },
     video: {
         position: 'absolute',
         width: Constant.screen.width,
-        height: '100%'
+        height: Constant.screen.height
+        // width: 200,
+        // height: 200
     },
     bottomSection: {
         position: 'absolute',
         bottom: 0,
-        width: '100%',
+        width: Constant.screen.width,
         flexDirection: 'row',
-        paddingHorizontal: 8,
-        paddingBottom: 16
+        paddingHorizontal: '8@ms',
+        paddingBottom: '16@ms'
     },
     bottomLeftSection: {
         flex: 4
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
     },
     caption: {
         color: 'white',
-        marginVertical: 8
+        marginVertical: '8@ms'
     },
     musicNameContainer: {
         flexDirection: 'row',
@@ -202,42 +203,42 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     musicDisc: {
-        width: 40,
-        height: 40
+        width: '40@ms',
+        height: '40@ms'
     },
     verticalBar: {
         position: 'absolute',
-        right: 8,
-        bottom: 72
+        right: '8@ms',
+        bottom: '72@ms'
     },
     verticalBarItem: {
-        marginBottom: 24,
+        marginBottom: '24@ms',
         alignItems: 'center'
     },
     verticalBarText: {
         color: 'white',
-        marginTop: 4
+        marginTop: '4@ms'
     },
     avatarContainer: {
-        marginBottom: 48
+        marginBottom: '48@ms'
     },
     avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24
+        width: '48@ms',
+        height: '48@ms',
+        borderRadius: '24@ms'
     },
     followButton: {
         position: 'absolute',
-        bottom: -20,
-        width: 16,
-        height: 32
+        bottom: '-20@ms',
+        width: '16@ms',
+        height: '32@ms'
     },
     musicNote: {
         position: 'absolute',
-        width: 16,
-        height: 16,
+        width: '16@ms',
+        height: '16@ms',
         tintColor: 'white',
-        right: 40,
-        bottom: 16
+        right: '40@ms',
+        bottom: '16@ms'
     }
 })

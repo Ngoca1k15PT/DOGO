@@ -7,6 +7,8 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { useNavigation } from '@react-navigation/native'
 import { toast } from '@baronha/ting'
 import { RegisterHook } from '../../hook/RegisterHook'
+import { ScaledSheet } from 'react-native-size-matters'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 interface componentNameProps {}
 
@@ -51,7 +53,8 @@ const RegisterScreen = (props: componentNameProps) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <KeyboardAwareScrollView style={styles.container} enableOnAndroid={true}>
+            {/* <View style={styles.container}> */}
             <View style={styles.viewImage}>
                 <Image source={Constant.icons.imgRegister} style={styles.img} />
             </View>
@@ -60,10 +63,7 @@ const RegisterScreen = (props: componentNameProps) => {
                 setValue={setEmail}
                 type={'mail'}
                 textPlaceholder={'Email'}
-                customStyle={{
-                    marginHorizontal: 30,
-                    marginBottom: 20
-                }}
+                customStyle={styles.inputCustom}
                 check={false}
             />
             <InputCustom
@@ -71,10 +71,7 @@ const RegisterScreen = (props: componentNameProps) => {
                 setValue={setPassWord}
                 type={'security'}
                 textPlaceholder={'Mật Khẩu'}
-                customStyle={{
-                    marginHorizontal: 30,
-                    marginBottom: 20
-                }}
+                customStyle={styles.inputCustom}
                 check={check}
             />
             <InputCustom
@@ -82,7 +79,7 @@ const RegisterScreen = (props: componentNameProps) => {
                 setValue={setConfirmPassWord}
                 type={'security'}
                 textPlaceholder={'Nhập Lại Mật Khẩu'}
-                customStyle={{ marginHorizontal: 30 }}
+                customStyle={styles.inputCustomTwo}
                 check={check}
             />
             <BouncyCheckbox
@@ -100,10 +97,7 @@ const RegisterScreen = (props: componentNameProps) => {
                 onPress={(isChecked: boolean) => {
                     setCheck(!isChecked)
                 }}
-                style={{
-                    marginTop: 10,
-                    marginHorizontal: 30
-                }}
+                style={styles.checkBox}
             />
             <View style={styles.viewBottom}>
                 <ButtonDefault
@@ -127,38 +121,40 @@ const RegisterScreen = (props: componentNameProps) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </SafeAreaView>
+            {/* </View> */}
+        </KeyboardAwareScrollView>
     )
 }
 
 export default RegisterScreen
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         // justifyContent: 'center',
+        height: Constant.screen.height,
         backgroundColor: Constant.color.backGround
     },
     viewImage: {
         alignItems: 'center',
-        marginTop: Constant.screen.height * 0.15
+        marginTop: '120@ms'
     },
     img: {
         // backgroundColor: 'red',
-        marginLeft: 80
+        marginLeft: '80@ms'
     },
     viewBottom: {
-        marginHorizontal: 20
+        marginHorizontal: '20@ms'
     },
     viewLogin: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 20
+        marginTop: '20@ms'
     },
     textQuestion: {
         color: 'white',
         fontFamily: Constant.fonts.americanTypewriterCondensedBold,
-        marginRight: 5
+        marginRight: '5@ms'
     },
     textLogin: {
         color: '#FF4D67',
@@ -166,5 +162,16 @@ const styles = StyleSheet.create({
     },
     spinnerTextStyle: {
         color: '#FFF'
+    },
+    inputCustom: {
+        marginHorizontal: '30@ms',
+        marginBottom: '20@ms'
+    },
+    inputCustomTwo: {
+        marginHorizontal: '30@ms'
+    },
+    checkBox: {
+        marginTop: '10@ms',
+        marginHorizontal: '30@ms'
     }
 })

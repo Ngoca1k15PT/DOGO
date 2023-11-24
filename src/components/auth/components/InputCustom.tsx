@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Text, View, StyleSheet, TextInput, Image } from 'react-native'
 import Constant from '../../../controller/Constant'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { ScaledSheet } from 'react-native-size-matters'
 
 interface componentNameProps {
     value: any
@@ -60,23 +61,23 @@ const InputCustom = ({
 
 export default InputCustom
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container: {
         flexDirection: 'row',
-        height: 56,
+        height: '52@ms',
         // flex: 1,
         backgroundColor: '#dbdbdbc7',
         borderWidth: 1,
-        borderRadius: 10,
+        borderRadius: '10@ms',
         alignItems: 'center'
     },
     icon: {
-        width: 25,
-        height: 25,
-        marginRight: 15
+        width: '25@ms',
+        height: '25@ms',
+        marginRight: '15@ms'
     },
     inputStyle: {
         flex: 1,
-        marginLeft: 10
+        marginLeft: '10@ms'
     }
 })
