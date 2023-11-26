@@ -1,16 +1,34 @@
 import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import * as React from 'react'
+import React, {useEffect} from 'react'
 import TabBarNavigation from './TabBarNavigation'
 import { StatusBar } from 'react-native'
 import Constant from '../../controller/Constant'
 import LiveStreamScreen from '../live/LiveStreamScreen'
 import LoginScreen from '../auth/LoginScreen'
 import RegisterScreen from '../auth/RegisterScreen'
+import { storage } from '../../contract/Mmkv'
+import AppManager from '../../controller/AppManager'
 
 const Stack = createNativeStackNavigator()
 
 const RootNavigation = () => {
+
+    const checkLocalData = () => {
+        try {
+            var currentUser = storage.getString(Constant.keys.currentUser)
+            if (currentUser) {
+                AppManager.shared.currentUser = JSON.parse(currentUser)
+            }
+        } catch (e) {
+            console.log('Lỗi', e)
+        }
+    }
+
+    useEffect(() => {
+        checkLocalData()
+    },[])
+
     return (
         <NavigationContainer>
             <StatusBar barStyle={'light-content'} backgroundColor={Constant.color.backGround} />

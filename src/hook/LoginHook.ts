@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import Constant from '../controller/Constant'
 import UserModel from '../model/UseModel'
 import AppManager from '../controller/AppManager'
+import { storage } from '../contract/Mmkv'
 
 export const LoginHook = () => {
     const navigation = useNavigation()
@@ -26,13 +27,14 @@ export const LoginHook = () => {
                 res.user.getIdToken().then((res) => {
                     user.accessToken = res
                 })
+                storage.set(Constant.keys.currentUser,JSON.stringify(user))
                 AppManager.shared.currentUser = user
                 setTimeout(() => {
                     navigation.reset({
                         index: 0,
                         routes: [{ name: Constant.screenName.tabBarNavigation as never }]
                     })
-                }, 3000)
+                }, 2000)
             })
             .catch((error) => {
                 if (error.code === 'auth/invalid-email') {

@@ -3,16 +3,18 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import Constant from '../../../controller/Constant'
 import DataProfileModel from '../../../controller/ListDataProfile'
 import { useNavigation } from '@react-navigation/native'
+import { storage } from '../../../contract/Mmkv'
 
 type dataItem = {
     data: any
+    index: any
 }
 
 export type RootStackParamList = {
     LiveStreamScreen: undefined
 }
 
-const ItemList = ({ data }: dataItem) => {
+const ItemList = ({ data, index }: dataItem) => {
     const navigation = useNavigation()
 
     const getIcon = () => {
@@ -28,7 +30,15 @@ const ItemList = ({ data }: dataItem) => {
     }
 
     const handleOnclickItem = () => {
-        navigation.navigate(Constant.screenName.LiveStreamScreen as never)
+        // navigation.navigate(Constant.screenName.LiveStreamScreen as never)
+        switch (index) {
+            case 6: 
+                storage.clearAll()
+                navigation.navigate(Constant.screenName.LoginScreen as never)
+                break
+            default:
+                navigation.navigate(Constant.screenName.LiveStreamScreen as never)
+        }
     }
 
     return (
@@ -55,8 +65,8 @@ const ProfileScreenActive = () => {
                     />
                     <Text style={styles.textName}>Đinh Hoàng Ngọc</Text>
                 </View>
-                {DataProfileModel.map((item) => {
-                    return <ItemList data={item} />
+                {DataProfileModel.map((item, index) => {
+                    return <ItemList data={item} index={index} key={index} />
                 })}
             </ScrollView>
         </View>
