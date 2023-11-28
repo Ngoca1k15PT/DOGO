@@ -32,7 +32,10 @@ const ItemList = ({ data, index }: dataItem) => {
     const handleOnclickItem = () => {
         // navigation.navigate(Constant.screenName.LiveStreamScreen as never)
         switch (index) {
-            case 6: 
+            case 0:
+                navigation.navigate(Constant.screenName.EditProfileScreen as never)
+                break
+            case 6:
                 storage.clearAll()
                 navigation.navigate(Constant.screenName.LoginScreen as never)
                 break

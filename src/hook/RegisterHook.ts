@@ -3,7 +3,7 @@ import { toast } from '@baronha/ting'
 import RNProgressHud from 'progress-hud'
 import { useNavigation } from '@react-navigation/native'
 import Constant from '../controller/Constant'
-import firestore from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore'
 
 export const RegisterHook = () => {
     const navigation = useNavigation()
@@ -23,10 +23,10 @@ export const RegisterHook = () => {
                 firestore()
                     .collection('Users')
                     .doc(res.user.uid)
-                    .set({})
+                    .set({ email: res.user.email })
                     .then(() => {
-                        console.log('User added!');
-                    });
+                        console.log('User added!')
+                    })
                 setTimeout(() => {
                     navigation.reset({
                         index: 0,

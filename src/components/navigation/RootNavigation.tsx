@@ -1,6 +1,6 @@
 import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import TabBarNavigation from './TabBarNavigation'
 import { StatusBar } from 'react-native'
 import Constant from '../../controller/Constant'
@@ -9,11 +9,11 @@ import LoginScreen from '../auth/LoginScreen'
 import RegisterScreen from '../auth/RegisterScreen'
 import { storage } from '../../contract/Mmkv'
 import AppManager from '../../controller/AppManager'
+import EditProfileScreen from '../../components/profile/EditProfileScreen'
 
 const Stack = createNativeStackNavigator()
 
 const RootNavigation = () => {
-
     const checkLocalData = () => {
         try {
             var currentUser = storage.getString(Constant.keys.currentUser)
@@ -27,7 +27,7 @@ const RootNavigation = () => {
 
     useEffect(() => {
         checkLocalData()
-    },[])
+    }, [])
 
     return (
         <NavigationContainer>
@@ -49,6 +49,10 @@ const RootNavigation = () => {
                 <Stack.Screen
                     name={Constant.screenName.RegisterScreen}
                     component={RegisterScreen}
+                />
+                <Stack.Screen
+                    name={Constant.screenName.EditProfileScreen}
+                    component={EditProfileScreen}
                 />
             </Stack.Navigator>
         </NavigationContainer>

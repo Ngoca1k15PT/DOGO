@@ -14,7 +14,8 @@ const Constant = {
         tabBarNavigation: 'TabBarNavigation',
         LiveStreamScreen: 'LiveStreamScreen',
         LoginScreen: 'LoginScreen',
-        RegisterScreen: 'RegisterScreen'
+        RegisterScreen: 'RegisterScreen',
+        EditProfileScreen: 'EditProfileScreen'
     },
     color: {
         primary: '#1DA1F2',
