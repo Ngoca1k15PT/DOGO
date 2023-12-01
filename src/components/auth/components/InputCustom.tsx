@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Text, View, StyleSheet, TextInput, Image } from 'react-native'
+import { View, StyleSheet, TextInput, Image } from 'react-native'
 import Constant from '../../../controller/Constant'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { ScaledSheet } from 'react-native-size-matters'

@@ -1,5 +1,5 @@
 import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createStackNavigator } from '@react-navigation/stack'
 import React, { useEffect } from 'react'
 import TabBarNavigation from './TabBarNavigation'
 import { StatusBar } from 'react-native'
@@ -10,8 +10,14 @@ import RegisterScreen from '../auth/RegisterScreen'
 import { storage } from '../../contract/Mmkv'
 import AppManager from '../../controller/AppManager'
 import EditProfileScreen from '../../components/profile/EditProfileScreen'
+import UploadVideoScreen from '../home/components/UploadVideoScreen'
+import RootStackParamList from './RootStackParamList'
 
-const Stack = createNativeStackNavigator()
+const Stack = createStackNavigator<RootStackParamList>()
+
+// ...
+
+export const navigationRef = createNavigationContainerRef<RootStackParamList>()
 
 const RootNavigation = () => {
     const checkLocalData = () => {
@@ -30,30 +36,19 @@ const RootNavigation = () => {
     }, [])
 
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
             <StatusBar barStyle={'light-content'} backgroundColor={Constant.color.backGround} />
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false
                 }}
             >
-                <Stack.Screen
-                    name={Constant.screenName.tabBarNavigation}
-                    component={TabBarNavigation}
-                />
-                <Stack.Screen
-                    name={Constant.screenName.LiveStreamScreen}
-                    component={LiveStreamScreen}
-                />
-                <Stack.Screen name={Constant.screenName.LoginScreen} component={LoginScreen} />
-                <Stack.Screen
-                    name={Constant.screenName.RegisterScreen}
-                    component={RegisterScreen}
-                />
-                <Stack.Screen
-                    name={Constant.screenName.EditProfileScreen}
-                    component={EditProfileScreen}
-                />
+                <Stack.Screen name='TabBarNavigation' component={TabBarNavigation} />
+                <Stack.Screen name='LiveStreamScreen' component={LiveStreamScreen} />
+                <Stack.Screen name='LoginScreen' component={LoginScreen} />
+                <Stack.Screen name='RegisterScreen' component={RegisterScreen} />
+                <Stack.Screen name='EditProfileScreen' component={EditProfileScreen} />
+                <Stack.Screen name='UploadVideoScreen' component={UploadVideoScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -3,20 +3,25 @@ import { Text, View, Image, TouchableOpacity } from 'react-native'
 import InputCustom from './components/InputCustom'
 import Constant from '../../controller/Constant'
 import ButtonDefault from './components/ButtonDefault'
-import { useNavigation } from '@react-navigation/native'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { LoginHook } from '../../hook/LoginHook'
 import { toast } from '@baronha/ting'
 import { ScaledSheet } from 'react-native-size-matters'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import RootStackParamList from '../navigation/RootStackParamList'
+import type { CompositeScreenProps } from '@react-navigation/native'
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import type { StackScreenProps } from '@react-navigation/stack'
 
-interface componentNameProps {}
+type ProfileScreenNavigationProp = CompositeScreenProps<
+    BottomTabScreenProps<RootStackParamList, 'LoginScreen'>,
+    StackScreenProps<RootStackParamList>
+>
 
-const LoginScreen = (props: componentNameProps) => {
+const LoginScreen = ({ navigation }: ProfileScreenNavigationProp) => {
     const [email, setEmail] = useState()
     const [passWord, setPassWord] = useState()
     const [check, setCheck] = useState(true)
-    const navigation = useNavigation()
 
     const { handleLogin } = LoginHook()
 
@@ -88,11 +93,7 @@ const LoginScreen = (props: componentNameProps) => {
                 />
                 <View style={styles.viewRegister}>
                     <Text style={styles.textQuestion}>Nguời dùng mới ?</Text>
-                    <TouchableOpacity
-                        onPress={() =>
-                            navigation.navigate(Constant.screenName.RegisterScreen as never)
-                        }
-                    >
+                    <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
                         <Text style={styles.textRegister}>Đăng ký ngay</Text>
                     </TouchableOpacity>
                 </View>

@@ -1,4 +1,13 @@
-import { StyleSheet, Text, View, Image, Animated, Easing, StatusBar } from 'react-native'
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    Animated,
+    Easing,
+    StatusBar,
+    TouchableOpacity
+} from 'react-native'
 import React, { useRef, useEffect, useCallback } from 'react'
 import Video from 'react-native-video'
 import { MusicalIcon, HeartIcon, ChatIcon, ArrowIcon, AddIcon } from '../../../assets/images/svg'
@@ -6,11 +15,15 @@ import Constant from '../../../controller/Constant'
 import { getMusicNoteAnimation } from '../../../controller/Utils'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ScaledSheet } from 'react-native-size-matters'
+import Icon from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from '@react-navigation/native'
 
 type DataVideoProps = {
     data: any
     isActive: boolean
 }
+
+const currentHeight: any = StatusBar.currentHeight
 
 export default function VideoItem({ data, isActive }: DataVideoProps) {
     const { uri, caption, channelName, musicName, comments, avatarUri, likes } = data
@@ -19,6 +32,8 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
     const musicNoteAnimatedValue1 = useRef(new Animated.Value(0)).current
     const musicNoteAnimatedValue2 = useRef(new Animated.Value(0)).current
     const { bottom, top } = useSafeAreaInsets()
+
+    const navigation = useNavigation()
 
     const discAnimation = {
         transform: [
@@ -74,6 +89,10 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
         musicAnimationLoopRef.current.start()
     }, [discAnimatedValue, musicNoteAnimatedValue1, musicNoteAnimatedValue1])
 
+    const onclickUpload = () => {
+        // navigation.navigate(Constant.screenName.)
+    }
+
     useEffect(() => {
         if (isActive) {
             triggerAnimation()
@@ -100,10 +119,13 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
                     width: Constant.screen.width,
                     height:
                         // Constant.screen.height - bottom - 49 + StatusBar.currentHeight,
-                        Constant.screen.height - 49 + StatusBar.currentHeight
+                        Constant.screen.height - 49 + currentHeight
                 }
             ]}
         >
+            <TouchableOpacity style={styles.btnUpload}>
+                <Icon name='camera' size={25} color={'#f8778a'} />
+            </TouchableOpacity>
             <StatusBar translucent backgroundColor='transparent' barStyle='light-content' />
             <Video
                 source={{ uri }}
@@ -240,5 +262,18 @@ const styles = ScaledSheet.create({
         tintColor: 'white',
         right: '40@ms',
         bottom: '16@ms'
+    },
+    btnUpload: {
+        position: 'absolute',
+        zIndex: 999,
+        top: '50@ms',
+        right: '20@ms',
+        height: '40@ms',
+        width: '40@ms',
+        borderWidth: 1,
+        borderRadius: '20@ms',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#FF4D67'
     }
 })

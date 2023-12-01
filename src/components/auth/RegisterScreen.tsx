@@ -1,25 +1,29 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import InputCustom from './components/InputCustom'
 import Constant from '../../controller/Constant'
 import ButtonDefault from './components/ButtonDefault'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
-import { useNavigation } from '@react-navigation/native'
 import { toast } from '@baronha/ting'
 import { RegisterHook } from '../../hook/RegisterHook'
 import { ScaledSheet } from 'react-native-size-matters'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import RootStackParamList from '../navigation/RootStackParamList'
+import type { CompositeScreenProps } from '@react-navigation/native'
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import type { StackScreenProps } from '@react-navigation/stack'
 
-interface componentNameProps {}
+type ProfileScreenNavigationProp = CompositeScreenProps<
+    BottomTabScreenProps<RootStackParamList, 'RegisterScreen'>,
+    StackScreenProps<RootStackParamList>
+>
 
-const RegisterScreen = (props: componentNameProps) => {
+const RegisterScreen = ({ navigation }: ProfileScreenNavigationProp) => {
     const [email, setEmail] = useState()
     const [passWord, setPassWord] = useState()
     const [confirmPassWord, setConfirmPassWord] = useState()
     const [check, setCheck] = useState(true)
     const { handleRegister } = RegisterHook()
-
-    const navigation = useNavigation()
 
     const handleOnclickRegister = () => {
         if (!email) {
@@ -48,7 +52,7 @@ const RegisterScreen = (props: componentNameProps) => {
     const handleOnclickLogin = () => {
         navigation.reset({
             index: 0,
-            routes: [{ name: Constant.screenName.LoginScreen as never }]
+            routes: [{ name: 'LoginScreen' }]
         })
     }
 

@@ -1,17 +1,23 @@
 import React from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import Constant from '../../../controller/Constant'
-import { useNavigation } from '@react-navigation/native'
+import RootStackParamList from '../../navigation/RootStackParamList'
+import type { CompositeScreenProps } from '@react-navigation/native'
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import type { StackScreenProps } from '@react-navigation/stack'
 
-const ProfileScreenNotActive = () => {
-    const navigation = useNavigation()
+type ProfileScreenNavigationProp = CompositeScreenProps<
+    BottomTabScreenProps<RootStackParamList>,
+    StackScreenProps<RootStackParamList>
+>
 
+const ProfileScreenNotActive = ({ navigation }: ProfileScreenNavigationProp) => {
     const handleClickLogin = () => {
-        navigation.navigate(Constant.screenName.LoginScreen as never)
+        navigation.navigate('LoginScreen')
     }
 
     const handleClickRegister = () => {
-        navigation.navigate(Constant.screenName.RegisterScreen as never)
+        navigation.navigate('RegisterScreen')
     }
 
     return (

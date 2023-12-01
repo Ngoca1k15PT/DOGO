@@ -4,19 +4,23 @@ import Constant from '../../../controller/Constant'
 import DataProfileModel from '../../../controller/ListDataProfile'
 import { useNavigation } from '@react-navigation/native'
 import { storage } from '../../../contract/Mmkv'
+import RootStackParamList from '../../navigation/RootStackParamList'
+import type { CompositeScreenProps } from '@react-navigation/native'
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import type { StackScreenProps } from '@react-navigation/stack'
+import { navigationRef } from '../../navigation/RootNavigation'
+
+type ProfileScreenNavigationProp = CompositeScreenProps<
+    BottomTabScreenProps<RootStackParamList>,
+    StackScreenProps<RootStackParamList>
+>
 
 type dataItem = {
     data: any
     index: any
 }
 
-export type RootStackParamList = {
-    LiveStreamScreen: undefined
-}
-
 const ItemList = ({ data, index }: dataItem) => {
-    const navigation = useNavigation()
-
     const getIcon = () => {
         return data.status == false ? (
             <Image
@@ -30,10 +34,13 @@ const ItemList = ({ data, index }: dataItem) => {
     }
 
     const handleOnclickItem = () => {
+        navigationRef.navigate('')
+        return
+        navigation.navigate('')
         // navigation.navigate(Constant.screenName.LiveStreamScreen as never)
         switch (index) {
             case 0:
-                navigation.navigate(Constant.screenName.EditProfileScreen as never)
+                navigation.navigate
                 break
             case 6:
                 storage.clearAll()
@@ -55,7 +62,7 @@ const ItemList = ({ data, index }: dataItem) => {
     )
 }
 
-const ProfileScreenActive = () => {
+const ProfileScreenActive = ({ navigation }: ProfileScreenNavigationProp) => {
     return (
         <View style={styles.container}>
             <ScrollView>

@@ -15,7 +15,8 @@ const Constant = {
         LiveStreamScreen: 'LiveStreamScreen',
         LoginScreen: 'LoginScreen',
         RegisterScreen: 'RegisterScreen',
-        EditProfileScreen: 'EditProfileScreen'
+        EditProfileScreen: 'EditProfileScreen',
+        UploadVideoScreen: 'UploadVideoScreen'
     },
     color: {
         primary: '#1DA1F2',
