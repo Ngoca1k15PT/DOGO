@@ -1,14 +1,13 @@
 import auth from '@react-native-firebase/auth'
 import { toast } from '@baronha/ting'
 import RNProgressHud from 'progress-hud'
-import { useNavigation } from '@react-navigation/native'
 import Constant from '../controller/Constant'
 import UserModel from '../model/UseModel'
 import AppManager from '../controller/AppManager'
 import { storage } from '../contract/Mmkv'
+import { navigationRef } from '../components/navigation/RootNavigation'
 
 export const LoginHook = () => {
-    const navigation = useNavigation()
 
     const handleLogin = (email: string, passWord: string) => {
         const ProgressHUDMaskType: any = RNProgressHud.ProgressHUDMaskType
@@ -30,9 +29,9 @@ export const LoginHook = () => {
                 storage.set(Constant.keys.currentUser,JSON.stringify(user))
                 AppManager.shared.currentUser = user
                 setTimeout(() => {
-                    navigation.reset({
+                    navigationRef.reset({
                         index: 0,
-                        routes: [{ name: Constant.screenName.tabBarNavigation as never }]
+                        routes: [{ name: 'TabBarNavigation'}]
                     })
                 }, 2000)
             })

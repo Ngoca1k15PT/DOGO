@@ -1,18 +1,9 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
         "jsx": "react",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true
-        // "paths": {
-        //     "@controller/*": ["src/controller/*"],
-        //     "@components/*": ["src/components/*"],
-        //     "@model/*": ["src/model/*"],
-        //     "@assets/*": ["src/assets/*"],
-        //     "@hook/*": ["src/hook/*"],
-        //     "@contract/*": ["src/contract/*"]
-        // }
     },
     "extends": "@tsconfig/react-native/tsconfig.json"
 }

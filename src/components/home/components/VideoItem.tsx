@@ -16,7 +16,7 @@ import { getMusicNoteAnimation } from '../../../controller/Utils'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ScaledSheet } from 'react-native-size-matters'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/native'
+import { navigationRef } from '../../navigation/RootNavigation'
 
 type DataVideoProps = {
     data: any
@@ -26,14 +26,12 @@ type DataVideoProps = {
 const currentHeight: any = StatusBar.currentHeight
 
 export default function VideoItem({ data, isActive }: DataVideoProps) {
-    const { uri, caption, channelName, musicName, comments, avatarUri, likes } = data
+    const { urlVideo, caption, channelName, musicName, comments, avatarUri, likes } = data
 
     const discAnimatedValue = useRef(new Animated.Value(0)).current
     const musicNoteAnimatedValue1 = useRef(new Animated.Value(0)).current
     const musicNoteAnimatedValue2 = useRef(new Animated.Value(0)).current
     const { bottom, top } = useSafeAreaInsets()
-
-    const navigation = useNavigation()
 
     const discAnimation = {
         transform: [
@@ -90,7 +88,7 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
     }, [discAnimatedValue, musicNoteAnimatedValue1, musicNoteAnimatedValue1])
 
     const onclickUpload = () => {
-        // navigation.navigate(Constant.screenName.)
+        navigationRef.navigate('UploadVideoScreen')
     }
 
     useEffect(() => {
@@ -123,12 +121,12 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
                 }
             ]}
         >
-            <TouchableOpacity style={styles.btnUpload}>
+            <TouchableOpacity style={styles.btnUpload} onPress={onclickUpload}>
                 <Icon name='camera' size={25} color={'#f8778a'} />
             </TouchableOpacity>
             <StatusBar translucent backgroundColor='transparent' barStyle='light-content' />
             <Video
-                source={{ uri }}
+                source={{ uri: urlVideo }}
                 style={styles.video}
                 resizeMode={'cover' as never}
                 paused={!isActive}
@@ -160,18 +158,25 @@ export default function VideoItem({ data, isActive }: DataVideoProps) {
             </View>
             <View style={styles.verticalBar}>
                 <View style={[styles.verticalBarItem, styles.avatarContainer]}>
-                    <Image source={{ uri: avatarUri }} style={styles.avatar} />
+                    <Image
+                        source={{
+                            uri:
+                                avatarUri ||
+                                'https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg'
+                        }}
+                        style={styles.avatar}
+                    />
                     <View style={styles.followButton}>
                         <AddIcon width={22} height={22} fill={'red'} />
                     </View>
                 </View>
                 <View style={styles.verticalBarItem}>
                     <HeartIcon width={32} height={32} fill={'#fff'} />
-                    <Text style={styles.verticalBarText}>{likes}</Text>
+                    <Text style={styles.verticalBarText}>{999}</Text>
                 </View>
                 <View style={styles.verticalBarItem}>
                     <ChatIcon width={32} height={32} fill={'#fff'} />
-                    <Text style={styles.verticalBarText}>{comments}</Text>
+                    <Text style={styles.verticalBarText}>{999}</Text>
                 </View>
                 <View style={styles.verticalBarItem}>
                     <ArrowIcon width={32} height={32} fill={'#fff'} />

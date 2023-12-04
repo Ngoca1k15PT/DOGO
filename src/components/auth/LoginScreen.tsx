@@ -8,17 +8,10 @@ import { LoginHook } from '../../hook/LoginHook'
 import { toast } from '@baronha/ting'
 import { ScaledSheet } from 'react-native-size-matters'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import RootStackParamList from '../navigation/RootStackParamList'
-import type { CompositeScreenProps } from '@react-navigation/native'
-import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import type { StackScreenProps } from '@react-navigation/stack'
+import { navigationRef } from '../navigation/RootNavigation'
 
-type ProfileScreenNavigationProp = CompositeScreenProps<
-    BottomTabScreenProps<RootStackParamList, 'LoginScreen'>,
-    StackScreenProps<RootStackParamList>
->
 
-const LoginScreen = ({ navigation }: ProfileScreenNavigationProp) => {
+const LoginScreen = () => {
     const [email, setEmail] = useState()
     const [passWord, setPassWord] = useState()
     const [check, setCheck] = useState(true)
@@ -93,7 +86,7 @@ const LoginScreen = ({ navigation }: ProfileScreenNavigationProp) => {
                 />
                 <View style={styles.viewRegister}>
                     <Text style={styles.textQuestion}>Nguời dùng mới ?</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+                    <TouchableOpacity onPress={() => navigationRef.navigate('RegisterScreen')}>
                         <Text style={styles.textRegister}>Đăng ký ngay</Text>
                     </TouchableOpacity>
                 </View>

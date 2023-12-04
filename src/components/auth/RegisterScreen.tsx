@@ -8,17 +8,10 @@ import { toast } from '@baronha/ting'
 import { RegisterHook } from '../../hook/RegisterHook'
 import { ScaledSheet } from 'react-native-size-matters'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import RootStackParamList from '../navigation/RootStackParamList'
-import type { CompositeScreenProps } from '@react-navigation/native'
-import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import type { StackScreenProps } from '@react-navigation/stack'
+import { navigationRef } from '../navigation/RootNavigation'
 
-type ProfileScreenNavigationProp = CompositeScreenProps<
-    BottomTabScreenProps<RootStackParamList, 'RegisterScreen'>,
-    StackScreenProps<RootStackParamList>
->
 
-const RegisterScreen = ({ navigation }: ProfileScreenNavigationProp) => {
+const RegisterScreen = () => {
     const [email, setEmail] = useState()
     const [passWord, setPassWord] = useState()
     const [confirmPassWord, setConfirmPassWord] = useState()
@@ -50,7 +43,7 @@ const RegisterScreen = ({ navigation }: ProfileScreenNavigationProp) => {
     }
 
     const handleOnclickLogin = () => {
-        navigation.reset({
+        navigationRef.reset({
             index: 0,
             routes: [{ name: 'LoginScreen' }]
         })
