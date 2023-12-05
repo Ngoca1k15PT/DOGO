@@ -20,12 +20,15 @@ export default function HomeScreen() {
             .then((querySnapshot) => {
                 querySnapshot.forEach((documentSnapshot) => {
                     // console.log('data', data)
-                    // console.log('aaa', documentSnapshot.data())
-                    if (data.length == 0) {
-                        setData([documentSnapshot.data()])
-                    } else {
-                        setData([...data, documentSnapshot.data()])
-                    }
+                    console.log('aaa', documentSnapshot.data())
+                    // if (data.length == 0) {
+                    //     setData([documentSnapshot.data()])
+                    // } else {
+                    let newdata = [...data, documentSnapshot.data()]
+                    console.log('ndrt: ', newdata)
+
+                    setData((prev) => [...prev, documentSnapshot.data()])
+                    // }
                 })
             })
     }
